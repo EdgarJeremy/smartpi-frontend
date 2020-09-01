@@ -26,6 +26,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let passcode;
+    while (passcode !== 'sirius') {
+      passcode = this.askPasscode();
+    }
     const socket = io(`${REACT_APP_SERVER_HOST}:${REACT_APP_SERVER_PORT}`);
     socket.on('connect', () => {
       adapter.connect().then((models) => {
@@ -36,6 +40,12 @@ class App extends React.Component {
       });
     });
   }
+
+  askPasscode() {
+    const passcode = prompt('Masukkan passcode');
+    return passcode;
+  }
+
   render() {
     const { models } = this.state;
     return (
