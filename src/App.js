@@ -15,8 +15,14 @@ const {
 const adapter = new SiriusAdapter(REACT_APP_SERVER_HOST, REACT_APP_SERVER_PORT, localStorage);
 
 const sounds = {
-  incoming: ['hello', 'hello2'],
-  leave: ['goodbye', 'seeyousoon']
+  incoming: [
+    new Audio(require(`./sounds/hello.mp3`)),
+    new Audio(require(`./sounds/hello2.mp3`)),
+  ],
+  leave: [
+    new Audio(require(`./sounds/goodbye.mp3`)),
+    new Audio(require(`./sounds/seeyousoon.mp3`))
+  ]
 }
 
 class App extends React.Component {
@@ -45,14 +51,14 @@ class App extends React.Component {
       });
       socket.on('hello', () => {
         const random = Math.floor(Math.random() * sounds.incoming.length);
-        const sfx = new Audio(require(`./sounds/${sounds.incoming[random]}.mp3`));
+        const sfx = sounds.incoming[random];
         sfx.loop = false;
         sfx.play();
         console.log('hello');
       });
       socket.on('goodbye', () => {
         const random = Math.floor(Math.random() * sounds.leave.length);
-        const sfx = new Audio(require(`./sounds/${sounds.leave[random]}.mp3`));
+        const sfx = sounds.leave[random];
         sfx.loop = false;
         sfx.play();
         console.log('goodbye');
