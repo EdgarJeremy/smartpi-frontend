@@ -64,6 +64,13 @@ class App extends React.Component {
         console.log('goodbye');
       });
     });
+    document.onclick = () => {
+      console.log('interacted');
+      for(const typeSounds of Object.values(sounds)) {
+        console.log(typeSounds);
+        typeSounds.forEach((sound) => sound.play().then(() => sound.loop = false).then(() => sound.pause()));
+      }
+    }
   }
 
   askPasscode() {
