@@ -14,6 +14,11 @@ const {
 
 const adapter = new SiriusAdapter(REACT_APP_SERVER_HOST, REACT_APP_SERVER_PORT, localStorage);
 
+const sounds = {
+  incoming: ['hello', 'hello2'],
+  leave: ['goodbye', 'seeyousoon']
+}
+
 class App extends React.Component {
 
   state = {
@@ -37,6 +42,20 @@ class App extends React.Component {
       });
       socket.on('stream', (base64) => {
         this.setState({ liveCctv: base64 });
+      });
+      socket.on('hello', () => {
+        const random = Math.floor(Math.random() * sounds.incoming.length);
+        const sfx = new Audio(require(`./sounds/${sounds.incoming[random]}.mp3`));
+        sfx.loop = false;
+        sfx.play();
+        console.log('hello');
+      });
+      socket.on('goodbye', () => {
+        const random = Math.floor(Math.random() * sounds.leave.length);
+        const sfx = new Audio(require(`./sounds/${sounds.leave[random]}.mp3`));
+        sfx.loop = false;
+        sfx.play();
+        console.log('goodbye');
       });
     });
   }
