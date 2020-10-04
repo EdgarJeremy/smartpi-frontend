@@ -18,10 +18,19 @@ const sounds = {
   incoming: [
     new Audio(require(`./sounds/hello.mp3`)),
     new Audio(require(`./sounds/hello2.mp3`)),
+    new Audio(require(`./sounds/canihelpyou.mp3`)),
+    new Audio(require(`./sounds/hey.mp3`)),
+    new Audio(require(`./sounds/hey2.mp3`)),
+    new Audio(require(`./sounds/heyheyhey.mp3`)),
+    new Audio(require(`./sounds/heyitsme.mp3`)),
+    new Audio(require(`./sounds/hi.mp3`)),
+    new Audio(require(`./sounds/whatareyoudoing.mp3`)),
+    new Audio(require(`./sounds/whoareyou.mp3`)),
   ],
   leave: [
     new Audio(require(`./sounds/goodbye.mp3`)),
-    new Audio(require(`./sounds/seeyousoon.mp3`))
+    new Audio(require(`./sounds/seeyousoon.mp3`)),
+    new Audio(require(`./sounds/goodbye2.mp3`)),
   ]
 }
 
